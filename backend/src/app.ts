@@ -3,7 +3,7 @@ import { loginRouter, userRouter } from './routers';
 import ErrorMiddleware from './middlewares/ErrorMiddleware';
 
 export default class App {
-  private app: express.Express;
+  public app: express.Express;
 
   constructor() {
     this.app = express();
@@ -27,3 +27,6 @@ export default class App {
     this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
   }
 }
+
+// A execução dos testes de cobertura depende dessa exportação
+export const { app } = new App();

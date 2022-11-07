@@ -20,8 +20,8 @@ export default class LoginController {
 
   async verify(req: Request, res: Response, next: NextFunction) {
     try {
-      const { token } = req.body;
-      this.loginService.validateToken(token);
+      const { authorization } = req.headers;
+      this.loginService.validateToken(authorization as string);
       res.sendStatus(200);
     } catch (error) {
       next(error);

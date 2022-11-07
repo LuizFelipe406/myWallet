@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import db from '.';
+import sequelize from './index';
 
 class User extends Model {
   declare id: number;
@@ -34,10 +34,10 @@ User.init({
     allowNull: false,
   }
 }, {
-  sequelize: db,
   modelName: 'User',
   tableName: 'Users',
   timestamps: false,
+  sequelize: sequelize,
 });
 
 export default User;

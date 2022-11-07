@@ -1,5 +1,5 @@
 import jwt = require('jsonwebtoken');
-import { User } from '../database/models'
+import User from '../database/models/User'
 import { CustomErrorParams } from './CustomError';
 
 export type JwtPayload = {

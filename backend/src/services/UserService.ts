@@ -1,4 +1,4 @@
-import { User } from '../database/models';
+import User from '../database/models/User';
 import bcrypt = require('bcryptjs');
 import UserModel from '../models/UserModel';
 import CustomError, { CustomErrorParams } from '../utils/CustomError';

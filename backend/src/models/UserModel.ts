@@ -1,4 +1,4 @@
-import { User } from '../database/models';
+import User from '../database/models/User';
 
 type newUserType = {
   email: string;

@@ -1,5 +1,5 @@
 import bcrypt = require('bcryptjs');
-import { User } from '../database/models';
+import User from '../database/models/User';
 import UserModel from '../models/UserModel';
 import CustomError from '../utils/CustomError';
 import JWT from '../utils/JWT';
