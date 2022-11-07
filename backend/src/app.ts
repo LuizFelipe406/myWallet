@@ -1,5 +1,5 @@
 import express from 'express';
-import { LoginRouter } from './routers';
+import { loginRouter, userRouter } from './routers';
 import ErrorMiddleware from './middlewares/ErrorMiddleware';
 
 export default class App {
@@ -12,7 +12,9 @@ export default class App {
 
     this.app.get('/', (req, res) => res.json({ ok: true }));
 
-    this.app.use('/login', LoginRouter);
+    this.app.use('/login', loginRouter.router);
+
+    this.app.use('/user', userRouter.router);
 
     this.app.use(ErrorMiddleware.handle)
   }

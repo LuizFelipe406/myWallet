@@ -1,11 +1,19 @@
 import express from 'express';
 import LoginController from '../controllers/LoginController';
 
-const router = express.Router();
-const loginController = new LoginController()
+export default class LoginRouter {
+  public router: express.IRouter;
+  private loginController: LoginController;
 
-router.post('/verify', (req, res, next) => loginController.verify(req, res, next));
+  constructor() {
+    this.router = express.Router();
+    this.loginController = new LoginController();
 
-router.post('/', (req, res, next) => loginController.login(req, res, next));
+    this.configRoutes();    
+  }
 
-export default router;
+  private configRoutes() {
+    this.router.post('/verify', (req, res, next) => this.loginController.verify(req, res, next));
+    this.router.post('/', (req, res, next) => this.loginController.login(req, res, next));
+  }
+}
