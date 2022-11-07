@@ -17,4 +17,14 @@ export default class LoginController {
       next(error);
     }
   }
+
+  async verify(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { token } = req.body;
+      this.loginService.validateToken(token);
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

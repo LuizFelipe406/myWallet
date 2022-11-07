@@ -6,3 +6,8 @@ export default class CustomError extends Error {
     this.status = status;
   }
 }
+
+export type CustomErrorParams = {
+  message: string;
+  status: number;
+}

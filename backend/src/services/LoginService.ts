@@ -38,4 +38,9 @@ export default class LoginService {
 
     return user
   }
+
+  public validateToken(token: string) {
+    const verification = JWT.validateToken(token)
+    if (!("id" in verification)) throw new CustomError(verification.message, verification.status);
+  }
 }
