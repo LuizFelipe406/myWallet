@@ -1,14 +1,14 @@
 import bcrypt = require('bcryptjs');
 import { User } from '../database/models';
-import LoginModel from '../models/LoginModel';
+import UserModel from '../models/UserModel';
 import CustomError from '../utils/CustomError';
 import JWT from '../utils/JWT';
 import loginSchema from '../utils/LoginSchema';
 
 export default class LoginService {
-  private loginModel: LoginModel;
+  private userModel: UserModel;
   constructor() {
-    this.loginModel = new LoginModel();
+    this.userModel = new UserModel();
   }
 
   async login(email: string, password: string): Promise<string> {
@@ -28,7 +28,7 @@ export default class LoginService {
   }
 
   private async validateUser(email: string, password: string) {
-    const user = await this.loginModel.getUserByEmail(email);
+    const user = await this.userModel.getUserByEmail(email);
     if (!user) return { status: 401, message: 'invalid credentials'};
 
     const isPasswordCorrect = bcrypt.compareSync(password, user.password);
