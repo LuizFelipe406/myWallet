@@ -25,7 +25,7 @@ describe('Testa a rota de Criação de Usuario', () => {
       pictureUrl: 'url'
     });
 
-    expect(response.status).to.be.equal(401);
+    expect(response.status).to.be.equal(400);
     expect(response.body).to.be.deep.equal({
       message: '"email" must be a valid email'
     })
@@ -42,7 +42,7 @@ describe('Testa a rota de Criação de Usuario', () => {
       pictureUrl: 'url'
     });
 
-    expect(response.status).to.be.equal(401);
+    expect(response.status).to.be.equal(400);
     expect(response.body).to.be.deep.equal({
       message: '"password" length must be at least 6 characters long'
     })
@@ -59,7 +59,7 @@ describe('Testa a rota de Criação de Usuario', () => {
       pictureUrl: 'url'
     });
 
-    expect(response.status).to.be.equal(401);
+    expect(response.status).to.be.equal(400);
     expect(response.body).to.be.deep.equal({
       message: '"username" length must be at least 3 characters long'
     })
@@ -77,7 +77,7 @@ describe('Testa a rota de Criação de Usuario', () => {
       pictureUrl: 'url'
     });
 
-    expect(response.status).to.be.equal(401);
+    expect(response.status).to.be.equal(400);
     expect(response.body).to.be.deep.equal({
       message: 'email already used'
     })
@@ -98,7 +98,7 @@ describe('Testa a rota de Criação de Usuario', () => {
       pictureUrl: 'url'
     });
 
-    expect(response.status).to.be.equal(401);
+    expect(response.status).to.be.equal(400);
     expect(response.body).to.be.deep.equal({
       message: 'username already used'
     })

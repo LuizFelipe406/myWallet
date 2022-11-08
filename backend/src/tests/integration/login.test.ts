@@ -22,7 +22,7 @@ describe('Testa a Rota de Login', () => {
       password: '123456'
     });
 
-    expect(response.status).to.be.equal(401);
+    expect(response.status).to.be.equal(400);
     expect(response.body).to.be.deep.equal({
       message: '"email" is required'
     });
@@ -37,7 +37,7 @@ describe('Testa a Rota de Login', () => {
       password: '123456'
     });
 
-    expect(response.status).to.be.equal(401);
+    expect(response.status).to.be.equal(400);
     expect(response.body).to.be.deep.equal({
       message: '"email" must be a valid email'
     });
@@ -51,7 +51,7 @@ describe('Testa a Rota de Login', () => {
       email: 'email@test.com'
     });
 
-    expect(response.status).to.be.equal(401);
+    expect(response.status).to.be.equal(400);
     expect(response.body).to.be.deep.equal({
       message: '"password" is required'
     })
@@ -66,7 +66,7 @@ describe('Testa a Rota de Login', () => {
       password: '123'
     });
 
-    expect(response.status).to.be.equal(401);
+    expect(response.status).to.be.equal(400);
     expect(response.body).to.be.deep.equal({
       message: '"password" length must be at least 6 characters long'
     })

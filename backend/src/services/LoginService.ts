@@ -23,7 +23,7 @@ export default class LoginService {
 
   private validateParams(email:string, password:string) {
     const { error } = loginSchema.validate({ email, password });
-    if (error) return { status: 401, message: error.message};
+    if (error) return { status: 400, message: error.message};
     return undefined;
   }
 

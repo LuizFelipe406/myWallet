@@ -30,19 +30,19 @@ export default class UserService {
   private validateBody(body: User): CustomErrorParams | undefined {
     const { email, password, username, pictureUrl } = body;
     const { error } = userSchema.validate({ email, password, username, pictureUrl });
-    if (error) return { status: 401, message: error.message};
+    if (error) return { status: 400, message: error.message};
     return undefined;
   }
 
   private async verifyEmail(email: string): Promise<CustomErrorParams | undefined> {
     const user = await this.userModel.getUserByEmail(email);
-    if (user) return { status: 401, message: "email already used"};
+    if (user) return { status: 400, message: "email already used"};
     return undefined
   }
 
   private async verifyUsername(username: string): Promise<CustomErrorParams | undefined> {
     const user = await this.userModel.getUserByUsername(username);
-    if (user) return { status: 401, message: "username already used"};
+    if (user) return { status: 400, message: "username already used"};
     return undefined
   }
 
