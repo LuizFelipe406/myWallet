@@ -31,9 +31,15 @@ export default class ExpenseModel {
   }
 
   async update(id: number, userId:number, expense: updateExpense) {
-    await Expense.update(
+    const [affectecRows] = await Expense.update(
       { ...expense },
       { where: { id, userId } },
     );
+    return affectecRows;
+  }
+
+  async delete(id:number, userId:number) {
+    const affectedRows = await Expense.destroy({ where: { id, userId }});
+    return affectedRows;
   }
 }

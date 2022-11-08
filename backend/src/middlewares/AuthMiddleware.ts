@@ -6,7 +6,7 @@ export default class AuthMiddleware {
     const { authorization } = req.headers;
     const validation = JWT.validateToken(authorization as string);
     if (typeof validation === 'number') {
-      req.id = validation;
+      req.userId = validation;
       next();
     }
     next(validation);

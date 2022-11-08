@@ -25,6 +25,8 @@ export default class LoginRouter {
 
     this.router.post('/', (req, res, next) => this.controller.create(req, res, next));
 
-    this.router.put('/', (req, res, next) => this.controller.update(req, res, next));
+    this.router.put('/:id', (req, res, next) => this.controller.update(req, res, next));
+
+    this.router.delete('/:id', (req, res, next) => this.controller.delete(req, res, next))
   }
 }

@@ -31,12 +31,18 @@ export default class MainService {
     return newExpense;
   }
 
-  async update(expenseId: number, userId: number, body: ExpenseReqBody) {
+  async update(id: number, userId: number, body: ExpenseReqBody) {
     const { name, value, date, category } = body;
     const error = this.validateBody(name, value, date, category);
     if (error) throw new CustomError(error.message, error.status);
 
-    await this.model.update(expenseId, userId, { name, value, date, category });
+    const affectedRows = await this.model.update(id, userId, { name, value, date, category });
+    if(affectedRows === 0) throw new Error();
+  }
+
+  async delete(id: number, userId: number) {
+    const affectedRows = await this.model.delete(id, userId);
+    if(affectedRows === 0) throw new Error();
   }
 
   private validateBody(name: string, value: number, date: Date, category: string) {
