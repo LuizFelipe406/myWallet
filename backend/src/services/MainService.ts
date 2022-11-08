@@ -2,7 +2,7 @@ import ExpenseModel from "../models/ExpenseModel";
 import CustomError from "../utils/CustomError";
 import expenseSchema from '../utils/ExpenseSchema';
 
-type ExpenseReqBody = {
+interface ExpenseReqBody {
   name: string;
   value: number;
   date: Date;
@@ -29,6 +29,14 @@ export default class MainService {
 
     const newExpense = await this.model.create({ userId, name, value, date, category });
     return newExpense;
+  }
+
+  async update(expenseId: number, userId: number, body: ExpenseReqBody) {
+    const { name, value, date, category } = body;
+    const error = this.validateBody(name, value, date, category);
+    if (error) throw new CustomError(error.message, error.status);
+
+    await this.model.update(expenseId, userId, { name, value, date, category });
   }
 
   private validateBody(name: string, value: number, date: Date, category: string) {

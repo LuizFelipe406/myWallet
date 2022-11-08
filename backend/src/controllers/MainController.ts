@@ -29,4 +29,14 @@ export default class MainController {
       next(error);
     }
   }
+
+  async update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id, params: { expenseId }, body } = req;
+      await this.service.update(parseInt(expenseId), id as number, body);
+      res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

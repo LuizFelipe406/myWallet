@@ -1,11 +1,14 @@
 import { Op } from "sequelize";
 import Expense from "../database/models/Expense";
 
-type newExpense = {
+interface updateExpense {
   name: string;
   value: number;
   date: Date;
   category: string;
+}
+
+interface newExpense extends updateExpense {
   userId: number;
 }
 
@@ -25,5 +28,12 @@ export default class ExpenseModel {
   async create(expense: newExpense) {
     const newExpense = await Expense.create({ ...expense })
     return newExpense
+  }
+
+  async update(id: number, userId:number, expense: updateExpense) {
+    await Expense.update(
+      { ...expense },
+      { where: { id, userId } },
+    );
   }
 }
