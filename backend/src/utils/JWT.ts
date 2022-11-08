@@ -23,10 +23,10 @@ export default class JWT {
     return token;
   }
 
-  static validateToken(token: string): JwtPayload | CustomErrorParams {
+  static validateToken(token: string): number | CustomErrorParams {
     try {
-      const payload = jwt.verify(token, this.secret);
-      return payload as JwtPayload
+      const payload = jwt.verify(token, this.secret) as JwtPayload;
+      return payload.id
     } catch (error) {
       return { status: 401, message: "invalid token"}
     }

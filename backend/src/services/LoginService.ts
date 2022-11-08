@@ -41,6 +41,6 @@ export default class LoginService {
 
   public validateToken(token: string) {
     const verification = JWT.validateToken(token)
-    if (!("id" in verification)) throw new CustomError(verification.message, verification.status);
+    if (!(typeof verification === 'number')) throw new CustomError(verification.message, verification.status);
   }
 }
