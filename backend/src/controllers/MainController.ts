@@ -19,4 +19,14 @@ export default class MainController {
       next(error);
     }
   }
+
+  async create(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req;
+      const newExpense = await this.service.create(id as number, req.body);
+      res.status(201).json(newExpense);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
