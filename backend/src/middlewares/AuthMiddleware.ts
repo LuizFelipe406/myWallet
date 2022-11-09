@@ -8,7 +8,8 @@ export default class AuthMiddleware {
     if (typeof validation === 'number') {
       req.userId = validation;
       next();
+    } else {
+      next(validation);
     }
-    next(validation);
   }
 }

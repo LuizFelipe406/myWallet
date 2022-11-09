@@ -17,6 +17,8 @@ export default class MainService {
   }
 
   async getAll(id: number, month: number, year: number) {
+    if (!month || !year) throw new CustomError('fields missing', 400);
+
     const data = await this.model.getAll(id, month, year);
     if (!data) throw new Error();
     return data;
@@ -35,7 +37,6 @@ export default class MainService {
     const { name, value, date, category } = body;
     const error = this.validateBody(name, value, date, category);
     if (error) throw new CustomError(error.message, error.status);
-
     const affectedRows = await this.model.update(id, userId, { name, value, date, category });
     if(affectedRows === 0) throw new Error();
   }

@@ -14,7 +14,7 @@ export default class MainController {
       const { month, year } = req.body;
       const { userId } = req;
       const data = await this.service.getAll(userId as number, month, year);
-      res.status(200).json(data);
+      return res.status(200).json(data);
     } catch (error) {
       next(error);
     }
@@ -24,7 +24,7 @@ export default class MainController {
     try {
       const { userId } = req;
       const newExpense = await this.service.create(userId as number, req.body);
-      res.status(201).json(newExpense);
+      return res.status(201).json(newExpense);
     } catch (error) {
       next(error);
     }
