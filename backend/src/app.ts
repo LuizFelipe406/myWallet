@@ -1,5 +1,5 @@
 import express from 'express';
-import { expenseRouter, loginRouter, userRouter } from './routers';
+import { expenseRouter, loginRouter, revenueRouter, userRouter } from './routers';
 import ErrorMiddleware from './middlewares/ErrorMiddleware';
 
 export default class App {
@@ -17,6 +17,8 @@ export default class App {
     this.app.use('/user', userRouter.router);
 
     this.app.use('/expense', expenseRouter.router);
+
+    this.app.use('/revenue', revenueRouter.router);
 
     this.app.use(ErrorMiddleware.handle)
   }

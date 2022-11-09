@@ -1,11 +1,13 @@
 import { NextFunction, Request, Response } from "express";
-import ExpenseModel from "../models/ExpenseModel";
+import Expense from "../database/models/Expense";
+import Revenue from "../database/models/Revenue";
+import MainModel from "../models/MainModel";
 import MainService from "../services/MainService";
 
 export default class MainController {
   private service: MainService;
 
-  constructor(model: ExpenseModel) {
+  constructor(model: MainModel<Expense | Revenue>) {
     this.service = new MainService(model);
   }
 

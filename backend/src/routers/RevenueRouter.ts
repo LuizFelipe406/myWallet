@@ -1,18 +1,18 @@
 import express from 'express';
 import MainController from '../controllers/MainController';
 import AuthMiddleware from '../middlewares/AuthMiddleware';
-import ExpenseModel from '../models/ExpenseModel';
+import RevenueModel from '../models/RevenueModel';
 
-export default class ExpenseRouter {
+export default class RevenueRouter {
   public router: express.IRouter;
   private controller: MainController;
-  private model: ExpenseModel;
+  private model: RevenueModel;
   private authMiddleware: AuthMiddleware;
 
   constructor() {
     this.router = express.Router();
     this.authMiddleware = new AuthMiddleware();
-    this.model = new ExpenseModel();
+    this.model = new RevenueModel();
     this.controller = new MainController(this.model);
 
     this.configRoutes();    
