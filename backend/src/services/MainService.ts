@@ -1,6 +1,6 @@
 import ExpenseModel from "../models/ExpenseModel";
 import CustomError from "../utils/CustomError";
-import expenseSchema from '../utils/ExpenseSchema';
+import expenseSchema from '../utils/joi/ExpenseSchema';
 
 interface ExpenseReqBody {
   name: string;
