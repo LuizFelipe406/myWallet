@@ -1,4 +1,4 @@
-import User from "../../database/models/User";
+import User from "../../../database/models/User";
 
 const MockUser: User = new User({
   id: 1,

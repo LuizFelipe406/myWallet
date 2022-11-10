@@ -10,7 +10,7 @@
     "dev": "nodemon --watch \"./src/**\" ./src/server.ts",
     "prestart": "npm run build && npm run db:reset",
     "start": "node .",
-    "test": "mocha -r ts-node/register ./src/tests/integration/*$NAME*.{test,spec}.ts -t 10000 --exit"
+    "test": "mocha -r ts-node/register ./src/tests/integration/**/*$NAME*.{test,spec}.ts -t 10000 --exit"
   },
   "keywords": [],
   "author": "",

@@ -37,6 +37,7 @@ export default class MainService {
     const { name, value, date, category } = body;
     const error = this.validateBody(name, value, date, category);
     if (error) throw new CustomError(error.message, error.status);
+
     const affectedRows = await this.model.update(id, userId, { name, value, date, category });
     if(affectedRows === 0) throw new Error();
   }

@@ -44,8 +44,8 @@ Revenue.init({
   sequelize: sequelize,
 });
 
-User.hasMany(Revenue, { foreignKey: 'userId', as: 'user' });
+User.hasMany(Revenue, { foreignKey: 'userId' });
 
-Revenue.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+Revenue.belongsTo(User, { foreignKey: 'userId' });
 
 export default Revenue;

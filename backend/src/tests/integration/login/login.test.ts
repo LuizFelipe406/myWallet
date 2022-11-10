@@ -3,9 +3,9 @@ import chai from 'chai';
 
 import chaiHttp from 'chai-http';
 
-import { app } from '../../app';
-import User from '../../database/models/User';
-import MockUser from './mockUser';
+import { app } from '../../../app';
+import User from '../../../database/models/User';
+import MockUser from '../user/mockUser';
 
 chai.use(chaiHttp);
 
