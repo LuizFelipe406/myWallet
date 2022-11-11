@@ -1,19 +1,22 @@
 version: '3.9'
 services:
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - 3000:3000
-  #   working_dir: /app-frontend
-  #   depends_on:
-  #     backend:
-  #       condition: service_healthy
-  #   # Os `healthcheck` devem garantir que a aplicação
-  #   # está operacional, antes de liberar o container
-  #   healthcheck:
-  #     test: ["CMD", "lsof", "-t", "-i:3000"]  # Caso utilize outra porta interna para o front, altere ela aqui também
-  #     timeout: 10s
-  #     retries: 5
+  frontend:
+    container_name: myWallet_frontend_dev
+    build: ./frontend
+    ports:
+      - 3000:3000
+    working_dir: /app-frontend
+    volumes: 
+      - ./frontend/src:/app-frontend/src
+    depends_on:
+      backend:
+        condition: service_healthy
+    # Os `healthcheck` devem garantir que a aplicação
+    # está operacional, antes de liberar o container
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
   backend:
     container_name: myWallet_backend_dev
     build: ./backend
@@ -36,7 +39,7 @@ services:
       - DB_HOST=db
       - DB_PORT=3306
     healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
+      test: ["CMD", "lsof", "-t", "-i:3001"]
       timeout: 10s
       retries: 5
   db:

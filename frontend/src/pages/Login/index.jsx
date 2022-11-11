@@ -34,8 +34,9 @@ function Login() {
     setPassword(value);
     };
     
-    const login = () => {
-        const { status, data } = walletApi('POST', 'login', { email, password });
+    const login = async () => {
+        const { status, data } = await walletApi('POST', 'login', { email, password });
+        console.log(status);
 
         if(status === 401) {
             setLoginSuccesfull(false);

@@ -1,4 +1,6 @@
 import express from 'express';
+import cors from 'cors';
+import 'dotenv/config';
 import { expenseRouter, loginRouter, revenueRouter, userRouter } from './routers';
 import ErrorMiddleware from './middlewares/ErrorMiddleware';
 
@@ -25,6 +27,9 @@ export default class App {
 
   private config():void {
     this.app.use(express.json());
+    this.app.use(cors({
+      origin: process.env.FRONTEND_URL || 'http://localhost:3000'
+    }))
   }
 
   public start(PORT: string): void {
