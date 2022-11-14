@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import walletApi from "../../utils/requestApi";
-import './login.css';
+import { BsCircleFill } from "react-icons/bs";
+import "./login.css";
 
 
 function Login() {
@@ -30,13 +31,13 @@ function Login() {
     }, [email, password]);
   
   const handleEmailChange = ({ target }) => {
-  const { value } = target;
-  setEmail(value);
+    const { value } = target;
+    setEmail(value);
   };
   
   const handlePasswordChange = ({ target }) => {
-  const { value } = target;
-  setPassword(value);
+    const { value } = target;
+    setPassword(value);
   };
   
   const login = async () => {
@@ -59,50 +60,74 @@ function Login() {
 
   return(
     <div className="login-page">
-      <Form className="form-container">
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Email"
-          className="mb-3 light-color-text"
+      <header className="fixed-top header mt-4">
+        <div className="ms-5 ps-5 d-flex align-items-center">
+          <BsCircleFill className="text-primary header-dot ms-5"/>
+          <h3 className="ms-2 light-color-text">MyWallet app <span className="text-primary">.</span></h3>
+        </div>
+      </header>
+      <div className="left-content mb-5">
+        <h4 className="left-subtitle ms-5 ps-2">START FOR FREE</h4>
+        <h1
+          className="left-title light-color-text ms-4 ps-4 mt-3 mb-4"
         >
-          <Form.Control
-            size="lg"
-            value={ email }
-            type="email"
-            placeholder="Email"
-            className="input"
-            onChange={ handleEmailChange }
-          />
-        </FloatingLabel>
+          Welcome back<span className="text-primary">.</span>
+        </h1>
+        <h4 className="left-subtitle ms-5 ps-2 mb-5 pb-4">Enter your email and password</h4>
+        <Form className="form-container">
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Email"
+            className="mb-3 light-color-text input-container"
+          >
+            <Form.Control
+              size="lg"
+              value={ email }
+              type="email"
+              placeholder="Email"
+              className="input"
+              onChange={ handleEmailChange }
+            />
+          </FloatingLabel>
 
-        <FloatingLabel
-          controlId="floatingPassword"
-          label="Password"
-          className="light-color-text mb-3"
-        >
-          <Form.Control
-            size="lg"
-            type="password"
-            className="input"
-            placeholder="Password"
-            value={ password }
-            onChange={ handlePasswordChange }
-          />
-        </FloatingLabel>
+          <FloatingLabel
+            controlId="floatingPassword"
+            label="Password"
+            className="light-color-text mb-5 input-container"
+          >
+            <Form.Control
+              size="lg"
+              type="password"
+              className="input"
+              placeholder="Password"
+              value={ password }
+              onChange={ handlePasswordChange }
+            />
+          </FloatingLabel>
 
-        { LoginSuccesfull === false && <span>Email ou Senha incorretos</span> }
+          { LoginSuccesfull === false && <span>Email ou Senha incorretos</span> }
 
-        <Button
-          size="lg"
-          type="button"
-          disabled={ isDisabled }
-          onClick={ login }
-        >
-          Entrar
-        </Button>
-
-        <Link to="/register">Criar conta</Link>
+          <div className="btn-container">
+            <Button
+              size="md"
+              type="button"
+              className="btn btn-create-account light-color-text"
+              onClick={() => navigate('/register')}
+            >
+              Create account
+            </Button>
+            <Button
+              size="md"
+              type="button"
+              className="btn btn-login"
+              disabled={ isDisabled }
+              onClick={ login }
+            >
+              Login
+            </Button>
+          </div>
         </Form>
+        </div>
     </div>
   );
 }
